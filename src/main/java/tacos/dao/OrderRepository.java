@@ -2,12 +2,10 @@ package tacos.dao;
 
 import java.util.Optional;
 
+import org.springframework.data.repository.CrudRepository;
 import tacos.data.TacoOrder;
 
-public interface OrderRepository {
+public interface OrderRepository extends CrudRepository<TacoOrder, Long> {
 
-  TacoOrder save(TacoOrder order);
-
-  Optional<TacoOrder> findById(Long id);
 
 }
