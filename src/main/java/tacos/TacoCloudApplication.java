@@ -39,6 +39,9 @@ public class TacoCloudApplication {
             ingredientRepository.save(new Ingredient("JACK", "Monterrey Jack 2", Type.CHEESE));
             ingredientRepository.save(new Ingredient("SLSA", "Salsa 2", Type.SAUCE));
             ingredientRepository.save(new Ingredient("SRCR", "Sour Cream 2", Type.SAUCE));
+
+
+            ingredientRepository.getIngredientByNameContaining("ce").stream().forEach(System.out::print);
         };
     }
 

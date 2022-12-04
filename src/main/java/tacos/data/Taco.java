@@ -1,19 +1,19 @@
 package tacos.data;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Table;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
-@Table
+@Entity
 @Data
 public class Taco {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private Date createdAt = new Date();
@@ -24,6 +24,8 @@ public class Taco {
 
     @NotNull
     @Size(min = 1, message = "Debe elegir al menos 1 ingrediente")
-    private List<IngredientRef> ingredients;
+    @ManyToMany
+    private List<Ingredient> ingredients;
 
+    /*no agregare el addingrediente*/
 }
