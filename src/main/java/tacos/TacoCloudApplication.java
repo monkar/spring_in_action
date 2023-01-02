@@ -2,11 +2,8 @@ package tacos;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.jdbc.core.JdbcTemplate;
 import tacos.dao.IngredientRepository;
 import tacos.data.Ingredient;
 import tacos.data.Ingredient.Type;
@@ -41,7 +38,7 @@ public class TacoCloudApplication {
             ingredientRepository.save(new Ingredient("SRCR", "Sour Cream 2", Type.SAUCE));
 
 
-            ingredientRepository.getIngredientByNameContaining("ce").stream().forEach(System.out::print);
+            //ingredientRepository.getIngredientByNameContaining("ce").stream().forEach(System.out::print);
         };
     }
 

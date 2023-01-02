@@ -5,18 +5,15 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import tacos.dao.IngredientRepository;
 import tacos.data.Ingredient;
-import tacos.data.Ingredient.Type;
-
-import java.util.HashMap;
-import java.util.Map;
+import tacos.data.IngredientUDT;
 
 @Component
-public class IngredientByIdConverter implements Converter<String, Ingredient> {
+public class IngredientUDTByIdConverter implements Converter<String, IngredientUDT> {
 
     private final IngredientRepository ingredientRepository;
 
     @Autowired
-    public IngredientByIdConverter(IngredientRepository ingredientRepository){
+    public IngredientUDTByIdConverter(IngredientRepository ingredientRepository){
         this.ingredientRepository = ingredientRepository;
     }
     /*
@@ -46,9 +43,10 @@ public class IngredientByIdConverter implements Converter<String, Ingredient> {
     }*/
 
     @Override
-    public Ingredient convert(String id) {
+    public IngredientUDT convert(String id) {
         //return ingredientMap.get(id);
-        return ingredientRepository.findById(id).orElse(null);
+        Ingredient ingredient = ingredientRepository.findById(id).orElse(null);
+        return new IngredientUDT(ingredient.getName(),ingredient.getType());
     }
 
 
