@@ -11,7 +11,6 @@ import tacos.data.Ingredient;
 import tacos.data.Ingredient.Type;
 import tacos.data.Taco;
 import tacos.data.TacoOrder;
-import tacos.data.TacoUDT;
 
 import javax.validation.Valid;
 import java.util.Arrays;

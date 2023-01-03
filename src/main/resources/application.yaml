@@ -2,11 +2,6 @@ spring:
   thymeleaf:
     cache: false
 
-  data:
-    cassandra:
-      keyspace-name: tacocloud
-      schema-action: recreate
-      local-datacenter: datacenter1
-      username: monkar
-      password: monkar
-
+  mongodb:
+    embedded:
+      version: 4.0.21
