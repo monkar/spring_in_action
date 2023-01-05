@@ -27,10 +27,24 @@ create table if not exists Ingredient_Ref (
 
 
 create table if not exists Ingredient (
-    id varchar(4) not null,
+    id varchar(4) not null PRIMARY KEY UNIQUE ,
     name varchar(25) not null,
     type varchar(10) not null
     );
+
+create table if not exists security_user (
+    id identity,
+    username varchar(25) not null,
+    password varchar(10) not null,
+    fullname varchar(10) not null,
+    street varchar(10) not null,
+    city varchar(10) not null,
+    state varchar(10) not null,
+    zip varchar(10) not null,
+    phone_number varchar(10) not null
+    );
+
+
 
 
 alter table Taco

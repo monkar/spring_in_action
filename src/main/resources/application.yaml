@@ -1,15 +1,9 @@
 spring:
   thymeleaf:
     cache: false
+  datasource:
+    generate-unique-name: false
+    name: tacocloud
 
-  #mongodb:
-  #  embedded:
-  #    version: 4.0.21
-
-  data:
-    mongodb:
-      host: localhost
-      port: 27017
-      #username: tacocloud
-      #password: s3cr3tp455w0rd
-      database: test
+  #jpa:
+  #  generate-ddl: true
