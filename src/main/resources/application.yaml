@@ -7,3 +7,15 @@ spring:
 
   #jpa:
   #  generate-ddl: true
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            clientId: 1858131357887980
+            clientSecret: 50e8ff03070f47fbf9fdfe86a5fdc55a
+            scope: email, public_profile
+          google:
+            clientId: 1858131357887980
+            clientSecret: 50e8ff03070f47fbf9fdfe86a5fdc55a
+            scope: email, public_profile

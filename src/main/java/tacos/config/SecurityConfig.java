@@ -3,6 +3,7 @@ package tacos.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -20,6 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
+@EnableGlobalMethodSecurity(securedEnabled = true) //sirve para habilitar seguridad en metodosx
 public class SecurityConfig {
 
     @Bean
@@ -65,14 +67,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeRequests()
+
+
                 .antMatchers("/design", "/orders").access("hasRole('USER')")
-                .antMatchers("/", "/**").access("permitAll()")
+                .antMatchers("/", "/**","/h2-console/**").access("permitAll")
 
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/design")
                 .failureUrl("/login-error")
+
+
+
                 /*
                 .and()
                   .formLogin()
@@ -83,6 +90,21 @@ public class SecurityConfig {
                  */
 
                 .and()
+                .oauth2Login()
+                .loginPage("/login")
+
+                .and()
+                .logout()
+                //.logoutSuccessUrl("/")
+
+
+                .and()
+                //.csrf().disable() //necesario apra consola h2
+                .csrf().ignoringAntMatchers("/h2-console/**").and()
+
+                .headers().frameOptions().disable().and()
+
+                //.and()
                 .build();
     }
 

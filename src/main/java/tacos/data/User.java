@@ -1,4 +1,5 @@
 package tacos.data;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
 import javax.persistence.*;
@@ -16,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor(access=AccessLevel.PUBLIC, force=true)
 @RequiredArgsConstructor
 @Table(name = "security_user")
-public class User implements UserDetails {
+public class User implements UserDetails, Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -58,4 +59,18 @@ public class User implements UserDetails {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", fullname='" + fullname + '\'' +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
 }
