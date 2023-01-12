@@ -1,11 +1,14 @@
 package tacos.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import tacos.config.OrderProps;
 import tacos.dao.IngredientRepository;
 import tacos.data.Ingredient;
 import tacos.data.Ingredient.Type;
@@ -27,9 +30,12 @@ public class DesignTacoController {
 
     private final IngredientRepository ingredientRepository;
 
+    private OrderProps orderProps;
+
     @Autowired
-    public DesignTacoController(IngredientRepository ingredientRepository){
+    public DesignTacoController(IngredientRepository ingredientRepository, OrderProps orderProps){
         this.ingredientRepository = ingredientRepository;
+        this.orderProps = orderProps;
     }
 
 
@@ -70,6 +76,7 @@ public class DesignTacoController {
 
     @GetMapping
     public String showDesignForm() {
+        log.info("pageSize desde externo: "+ orderProps.getPageSize());
         return "design";
     }
 

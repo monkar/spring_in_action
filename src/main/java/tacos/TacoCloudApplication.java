@@ -1,9 +1,11 @@
 package tacos;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import tacos.dao.IngredientRepository;
 import tacos.dao.UserRepository;
@@ -14,6 +16,7 @@ import tacos.data.User;
 import javax.sql.DataSource;
 
 @SpringBootApplication
+@Slf4j
 public class TacoCloudApplication {
 
     public static void main(String[] args) {
@@ -26,7 +29,9 @@ public class TacoCloudApplication {
     //Esta forma, a diferencia de data._sql, otorga flexibilidad, puesto que permite agregar bases de datos no relaciones,
     // trabajar con jpa, etc.
     @Bean
+    @Profile("!prod") // "test"      {"test","qa"}       "!prod"
     public CommandLineRunner dataLoader(IngredientRepository ingredientRepository, UserRepository userRepository, PasswordEncoder encoder){
+        log.info("Cargando ingredientes a base de datos");
         return args -> {
             ingredientRepository.deleteAll();
             ingredientRepository.save(new Ingredient("FLTO", "Flour Tortilla 2", Type.WRAP));
@@ -48,5 +53,23 @@ public class TacoCloudApplication {
             //ingredientRepository.getIngredientByNameContaining("ce").stream().forEach(System.out::print);
         };
     }
+
+    /* los perfiles también pueden usarse en toda una clase de configuracion
+
+    @Profile({"!prod", "!qa"})
+    @Configuration
+    public class DevelopmentConfig {
+
+      @Bean
+      public CommandLineRunner dataLoader(IngredientRepository repo,
+            UserRepository userRepo, PasswordEncoder encoder) {
+
+        ...
+
+      }
+
+    }
+
+     */
 
 }

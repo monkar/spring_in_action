@@ -1,0 +1,10 @@
+{
+  "properties": [
+    {
+      "name": "taco.orders.pageSize",
+      "type": "java.lang.Integer",
+      "description": "Cantidad de registros por página",
+      "sourceType": "tacos.config.OrderProps",
+      "defaultValue": 20
+    }
+  ] }
