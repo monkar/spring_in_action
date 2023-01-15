@@ -1,11 +1,9 @@
 package tacos.dao;
 
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Slice;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.stereotype.Repository;
 import tacos.data.Taco;
 
-public interface TacoRepository extends CrudRepository<Long, Taco> {
+public interface TacoRepository extends PagingAndSortingRepository<Taco, Long> {
 
-    Iterable<Taco> findAll(PageRequest page);
 }

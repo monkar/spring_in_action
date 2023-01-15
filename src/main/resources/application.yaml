@@ -19,6 +19,10 @@ spring:
             clientId: 1858131357887980
             clientSecret: 50e8ff03070f47fbf9fdfe86a5fdc55a
             scope: email, public_profile
+  data:
+    rest:
+      base-path: /data-api
+
 server:
   port: 8443
   ssl:
@@ -35,6 +39,7 @@ logging:
     org:
       springframework:
         security: INFO
+
 
 
 taco:

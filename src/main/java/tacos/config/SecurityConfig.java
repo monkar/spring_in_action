@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
-@EnableGlobalMethodSecurity(securedEnabled = true) //sirve para habilitar seguridad en metodosx
+@EnableGlobalMethodSecurity(securedEnabled = true) //sirve para habilitar el spring security en methods
 public class SecurityConfig {
 
     @Bean
@@ -99,10 +99,21 @@ public class SecurityConfig {
 
 
                 .and()
-                //.csrf().disable() //necesario apra consola h2
+                //.csrf().disable() //necesario apra consola h2  - deshabilitando para rest data (put genera forbiden)
                 .csrf().ignoringAntMatchers("/h2-console/**").and()
 
                 .headers().frameOptions().disable().and()
+
+
+
+                //para data rest  TODO: Investigar seguridad para rest data
+                .csrf()
+                .ignoringAntMatchers("/data-api/**")
+                .and()
+                .authorizeRequests()
+                .antMatchers("/data-api/**").permitAll()
+                .and()
+
 
                 //.and()
                 .build();

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.
         SimpleGrantedAuthority;
@@ -26,6 +27,8 @@ public class User implements UserDetails, Serializable {
     private Long id;
 
     private final String username;
+
+    @JsonIgnore
     private final String password;
     private final String fullname;
     private final String street;
